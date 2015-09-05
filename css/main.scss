@@ -3,11 +3,9 @@
 ---
 @charset "utf-8";
 
-
-
-
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
+    "_materialize/sass/materialize",
     "variables",
     "base",
     "layout",
