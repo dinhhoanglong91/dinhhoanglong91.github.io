@@ -1,7 +1,38 @@
-ul.post-list {
+ul {
+  &#post-list {
+    font-size: 14px;
+
     li {
-        p {
-            font-size: $fs-post-preview;
+
+      a {
+
+        &.post-link {
+
+          &:hover {
+            @extend .red-text.text-darken-2;
+            @extend .teal.lighten-3;
+            text-decoration: none;
+          }
         }
+      }
+
+      .post-excerpt {
+
+        h1, h2, h3, h4, h5 {
+          font-size: 14px;
+        }
+
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+article {
+
+  p {
+    text-align: justify;
   }
 }
