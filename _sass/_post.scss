@@ -1,4 +1,30 @@
 ul {
+  &#book-list {
+
+    li {
+
+      a {
+        width: 100%;
+
+        &:hover {
+          @extend .red-text.text-darken-2, .teal.lighten-3;
+
+          .book-info {
+            @extend .light-blue-text;
+          }
+        }
+
+        .book-title {
+          font-size: 30px;
+        }
+
+        .book-info {
+          @extend .red-text;
+          font-size: 12px;
+        }
+      }
+    }
+  }
   &#post-list {
     font-size: 14px;
 
@@ -9,8 +35,7 @@ ul {
         &.post-link {
 
           &:hover {
-            @extend .red-text.text-darken-2;
-            @extend .teal.lighten-3;
+            @extend .red-text.text-darken-2, .teal.lighten-3;
             text-decoration: none;
           }
         }

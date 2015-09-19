@@ -4,7 +4,7 @@ permantlink: /blog/
 ---
 <ul id="post-list">
 {% for post in site.posts %}
-  {% if post.type != "book" %}
+  {% if post.type == "book" and post.book == "agile_software_development" %}
     <li>
       <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
       <h3>
@@ -17,3 +17,4 @@ permantlink: /blog/
   {% endif %}
 {% endfor %}
 </ul>
+

@@ -21,14 +21,6 @@ ul {
           text-decoration: none;
         }
 
-        &#btn-blog {
-
-          span {
-            display: inline-block;
-            vertical-align: middle;
-            margin-bottom: 10px;
-          }
-        }
       }
 
       &.active {
@@ -41,7 +33,7 @@ ul {
   }
 
   &#post-list {
-    font-size: 14px; 
+    font-size: 14px;
 
     li {
 
@@ -53,7 +45,7 @@ ul {
             @extend .red-text.text-darken-2;
             @extend .teal.lighten-3;
             text-decoration: none;
-          } 
+          }
         }
       }
     }
@@ -63,7 +55,44 @@ ul {
 #fullpage {
 
   .section {
-    @extend .red.lighten-3;
+    @extend .brown.darken-4, .white-text;
+
+    &#sec-blog {
+
+      a {
+
+        &#btn-blog {
+
+          span {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+
+    &#sec-academic {
+
+      ul {
+
+        li {
+          margin-bottom: 20px;
+
+          img {
+            width: 50px!important;
+            max-height: 50px!important;
+            margin-right: 10px;
+          }
+
+          span {
+            line-height: 50px;
+            font-size: 20px;
+          }
+        }
+      }
+
+    }
   }
 }
 
