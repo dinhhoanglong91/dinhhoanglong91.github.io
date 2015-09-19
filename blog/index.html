@@ -4,16 +4,14 @@ permantlink: /blog/
 ---
 <ul id="post-list">
 {% for post in site.posts %}
-  {% if post.type != "book" %}
-    <li>
-      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <h3>
-        <a class="post-link waves-effect waves-light" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </h3>
-      <div class="post-excerpt">
-        {{ post.excerpt }}
-      </div>
-    </li>
-  {% endif %}
+  <li>
+    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <h3>
+      <a class="post-link waves-effect waves-light" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h3>
+    <div class="post-excerpt">
+      {{ post.excerpt }}
+    </div>
+  </li>
 {% endfor %}
 </ul>
