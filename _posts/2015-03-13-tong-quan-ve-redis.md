@@ -1,5 +1,5 @@
 ---
-title:  "TỔNG QUAN VỀ REDIS"
+title:  "Tổng Quan Về Redis"
 ---
 
 ##Redis là gì?

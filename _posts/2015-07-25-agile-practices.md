@@ -177,3 +177,4 @@ Tuy nhiên lý tưởng là lý tưởng, nó luôn ở đó, và tôi nghĩ ch�
 
 Phần cuối cùng tác giả nói về các mô hình phát triển phần mềm linh hoạt, dù SCRUM được đưa ra nhưng có lẽ ở thời đó, người ta đề cao "Extreme Programming" hơn. Do đó chương tiếp theo cuốn sách nói về "Extreme Programming". Tuy nhiên, những năm gần đây "SCRUM" đang trở nên vượt trội và tôi đang làm việc theo mô hình đó. Do vậy tôi sẽ không dịch chương tiếp theo, nếu có thời gian sẽ viết bài về "SCRUM".
 
+[Back to chapter list](/books/agile-software-development)

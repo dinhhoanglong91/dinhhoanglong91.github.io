@@ -279,3 +279,4 @@ Bản thân tôi đã từng đọc tới 7 dấu hiệu của thiết kế tồ
 
 Trong phần giải pháp sử dụng thiết kế linh hoạt, Nguyên tắc đóng mở (`Open-Closed Principle`) và `Strategy Pattern` được đề cập nhen nhóm đưa đến giải pháp đơn giản nhưng tính tế cho vấn đề của thiết kế tồi. Tôi sẽ nhanh chóng dịch đến hai phần này để có thể hiểu hơn về thiết kế linh hoạt `Agile Design`.  :sure:
 
+[Back to chapter list](/books/agile-software-development)

@@ -1,5 +1,5 @@
 ---
-title: "REDIS DATA TYPES AND COMMANDS"
+title: "Redis Data Types And Commands"
 ---
 
 Trong bài viết [Tổng quan về Redis]({% post_url 2015-03-13-tong-quan-ve-redis %}), chúng ta đã cùng nhau tìm hiểu cơ bản về Redis, bao gồm các đặc trưng thường thấy của 1 DBMS, kiểu dữ liệu trong Redis và cơ chế lưu data trong ổ cứng của Redis. Trong bài viết này, chúng ta sẽ cùng tìm hiểu về các câu lệnh của Redis, cụ thể là các câu lệnh đặc trưng ứng với từng kiểu dữ liệu.
