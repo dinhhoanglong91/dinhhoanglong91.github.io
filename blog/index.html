@@ -5,10 +5,15 @@ permantlink: /blog/
 <ul id="post-list">
 {% for post in site.posts %}
   <li>
-    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
     <h3>
-      <a class="post-link waves-effect waves-light" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      <a class="post-link waves-effect waves-light" href="{{ post.url | prepend: site.baseurl }}">
+        {% if post.type == 'book' %}
+          [{{ post.book_title }}]
+        {% endif %}
+        {{ post.title }}
+      </a>
     </h3>
+    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
     <div class="post-excerpt">
       {{ post.excerpt }}
     </div>
