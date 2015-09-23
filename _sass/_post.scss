@@ -7,11 +7,7 @@ ul {
         width: 100%;
 
         &:hover {
-          @extend .red-text.text-darken-2, .teal.lighten-3;
-
-          .book-info {
-            @extend .light-blue-text;
-          }
+          text-decoration: underline;
         }
 
         .book-title {
@@ -30,13 +26,16 @@ ul {
 
     li {
 
+      h3 {
+        margin: 0px;
+      }
+
       a {
 
         &.post-link {
 
           &:hover {
-            @extend .red-text.text-darken-2, .teal.lighten-3;
-            text-decoration: none;
+            text-decoration: underline;
           }
         }
       }
