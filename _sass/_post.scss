@@ -1,9 +1,12 @@
 ul {
   &#book-list {
+    list-style: none;
+    padding: 0px;
 
     li {
 
       a {
+        color: $gray-darker;
         width: 100%;
 
         &:hover {
@@ -15,7 +18,7 @@ ul {
         }
 
         .book-info {
-          @extend .red-text;
+          color: $brand-danger;
           font-size: 12px;
         }
       }
@@ -23,6 +26,8 @@ ul {
   }
   &#post-list {
     font-size: 14px;
+    list-style: none;
+    padding: 0px;
 
     li {
 
@@ -33,7 +38,7 @@ ul {
       a {
 
         &.post-link {
-
+          color: $gray-darker;
           &:hover {
             text-decoration: underline;
           }
