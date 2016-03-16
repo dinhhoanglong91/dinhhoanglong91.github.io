@@ -34,20 +34,6 @@ Server của antirez nhận 1 lượng lớn thông tin từ nhiều trang web k
 
     **ZSET (sorted set):** Là 1 danh sách, trong đó mỗi phần tử là map của 1 string (member) và 1 floating-point number (score), danh sách được sắp xếp theo score này. Redis hỗ trợ thao tác thêm, đọc, xóa từng phần tử, lấy ra các phần tử dựa theo range của score hoặc của string.
 
-    **Lưu ý nhỏ dưới góc độ lập trình viên:**
-Trang web [ktmt.github.io](http://ktmt.github.io/) đưa ra loạt bài phân tích về source code Redis (viết bằng C), trong đó có 1 phần về kiểu dữ liệu của Redis. Tham khảo các bài viết đó, chúng ta có thể thấy Redis sử dụng 1 layer mô tả dữ liệu ở mức độ abstract, là redisObjectr-robj (định nghĩa trong redis.h), các thao tác cơ bản của db (db.c) đều làm việc trực tiếp với robj và không cần biết đến sự tồn tại của các kiểu string, list, hash, set, zset. Sơ đồ tổ chức có thể tham khảo trong mô hình dưới đây.
-
-   {% highlight bash %}
-    ╒===============╕
-|  t_hash.c     |
-|  t_list.c     |       ╒============╕      ╒=====================╕
-|  t_set.c      |  <=>  |  object.c  | <=>  |  db.c (robj -> sds) |
-|  t_string.c   |       ╘============╛      ╘=====================╛
-|  t_zset.c     |
-╘===============╛
-(Nguồn: ktmt.github.io)
-   {% endhighlight %}
-
 Thiết kế này giúp các thao tác làm việc với các kiểu dữ liệu khác nhau trở nên dễ dàng quản lý hơn, đồng thời hỗ trợ việc tăng cường số lượng kiểu dữ liệu trong tương lai. Kỹ thuật này tuân thủ [Dependency Inversion Principle](http://www.oodesign.com/dependency-inversion-principle.html). Lập trình viên có thể biết đến principle này hoặc không, nhưng chắc chắn nhiều người đã từng thiết kế/tổ chức code tuẩn thủ principle này. Đặc biệt là khi sử dụng [Factory Pattern](http://www.oodesign.com/factory-pattern.html).
 
 2. Master/Slave Replication
