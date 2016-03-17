@@ -81,6 +81,7 @@ Thật may mắn, như đã đề cập ở chương 4, bằng việc áp dụng
 SRP là một trong những nguyên tắc đơn giản nhất nhưng khó làm đúng nhất. Kết hợp các trách nhiệm lại là việc chúng ta làm một cách bình thường. Tìm kiếm và tách biệt những trách nhiệm khỏi những trách nhiệm khác là việc chúng ta làm trong thiết kế phần mềm, và đó thực sự là những gì nhà thiết kế phải làm. Những nguyên tắc được nhắc đến tiếp theo sẽ thảo luận lại vấn đề này theo một cách khác.
 
 > Bạn đọc có thể tham khảo slide sau của tôi để có được cái nhìn tổng quát về 5 nguyên tắc thiết kế linh hoạt:
+
 > [http://www.slideshare.net/dinhhoanglong91/object-oriented-design-principle](http://www.slideshare.net/dinhhoanglong91/object-oriented-design-principle)
 
 
