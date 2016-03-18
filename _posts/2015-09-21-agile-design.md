@@ -3,6 +3,7 @@ title: "Chương 7: Thế Nào Là Một Thiết Kế Linh Hoạt?"
 type: "book"
 book: "agile_software_development"
 book_title: "Agile Software Development"
+show_top: 0
 ---
 
 ## Phần 2 - Thiết kế linh hoạt (Agile Design)

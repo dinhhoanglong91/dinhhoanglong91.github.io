@@ -3,6 +3,7 @@ title: "Chương 8: Nguyên tắc một trách nhiệm"
 type: "book"
 book: "agile_software_development"
 book_title: "Agile Software Development"
+show_top: 0
 ---
 
 Tiếp nối loạt bài viết dịch cuốn sách "Agile Software Development, Principles Patterns and Practices", ngày hôm nay, chúng ta đến với nguyên tắc đầu tiên trong thiết kế linh hoạt, đó là `SRP`.
