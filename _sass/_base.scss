@@ -10,6 +10,7 @@ blockquote {
   border-left: 4px solid $grey-color-light;
   padding-left: $spacing-unit / 2;
   font-style: italic;
+  font-size: $base-font-size;
 
   > :last-child {
     margin-bottom: 0;
