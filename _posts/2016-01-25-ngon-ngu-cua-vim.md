@@ -1,5 +1,6 @@
 ---
 title: "Ngôn ngữ của Vim"
+cat: "it"
 ---
 
 ## Máy bạn có sẵn Vim, chắc chắn, vậy nó từ đâu ra ?

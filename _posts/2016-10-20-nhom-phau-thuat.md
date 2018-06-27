@@ -4,6 +4,7 @@ type: "book"
 book: "the_mythical_man_month"
 book_title: "The Mythical Man-Month"
 show_top: 0
+cat: "it"
 ---
 
 Tiếp nối chương 2 của cuốn [The Mythical Man-Month]({% post_url 2016-09-25-the-mythical-man-month %}), chúng ta đến với chương số ba của cuốn sách này, nói về cách xây dựng một nhóm làm việc hiệu quả.

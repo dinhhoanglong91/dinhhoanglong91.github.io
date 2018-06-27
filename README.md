@@ -1,2 +1,2 @@
-## Dinh Hoang Long's Homepage
+## Dinh Hoang Long's Blog
 

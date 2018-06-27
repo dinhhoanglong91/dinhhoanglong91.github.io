@@ -1,10 +1,11 @@
 ---
 layout: blog
-permantlink: /
+permantlink: /lifestyle/
 ---
+<h1>Coming soon...</h1>
 <ul id="post-list">
 {% for post in site.posts %}
-  {% if post.show_top != 0 %}
+  {% if post.cat == "lifestyle" %}
     <li>
       <h3>
         {% if post.content_type == "slide" %}

@@ -3,6 +3,7 @@ title: "Chương 1: Agile Practices"
 type: "book"
 book: "agile_software_development"
 book_title: "Agile Software Development"
+cat: "it"
 ---
 
 Tôi là một lập trình viên PHP. Sau 4 năm đại học với một năm vừa học vừa làm, tôi nghĩ mình đã trang bị đầy đủ kiến thức để có thể đi làm. Một năm đầu ở công ty của tôi khá đơn giản, tôi không gặp khó khăn để hoàn thành công việc của mình. Tôi có thời gian để tìm hiểu thêm nhiều công nghệ mới. Tuy nhiên, gần đây tôi được làm việc với một kỹ sư hàng đầu, người đang làm việc cho 1 dự án mã nguồn mở. Tôi nhận ra mình còn thiếu sót rất nhiều để có thể trở thành một kỹ sư chuyên nghiệp. Có vẻ nếu tiếp tục dành một hai tuần để học một framework, một thư viện hay một công cụ mới, làm một dự án con con chạy được, sẽ chỉ biến tôi thành một "thợ code" hơn là một "kỹ sư".

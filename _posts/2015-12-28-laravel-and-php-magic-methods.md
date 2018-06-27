@@ -1,5 +1,6 @@
 ---
 title: "Laravel and PHP Magic Methods"
+cat: "it"
 ---
 
 Theo kết quả survey của trang [sitepoint.com](http://www.sitepoint.com/best-php-framework-2015-sitepoint-survey-results/), Laravel vượt trội hoàn toàn so với các Framework khác của PHP về sự phổ biến. Nên nhớ rằng Laravel là một framework mới, rất mới so với Zend hay Symfony. Vậy điều gì đã làm cho Laravel trở nên nổi bật như vậy?

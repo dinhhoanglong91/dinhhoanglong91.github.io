@@ -1,5 +1,6 @@
 ---
 title: "Sử dụng CDN để giảm tải cho Server"
+cat: "it"
 ---
 
 ## Câu chuyện bắt đầu

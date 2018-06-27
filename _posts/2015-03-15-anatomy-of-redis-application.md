@@ -1,5 +1,6 @@
 ---
 title:  "Anatomy Of Redis Application"
+cat: "it"
 ---
 
 Ở các bài viết trước, chúng ta đã tìm hiểu [Tổng quan về Redis]({% post_url 2015-03-13-tong-quan-ve-redis %}) cũng như [Redis data types and commands]({% post_url 2015-03-14-redis-data-types-and-commands %}) và qua đó có được cái nhìn tổng quan nhất về Redis. Bài viết tiếp theo này sẽ là bước khởi động “nhẹ nhàng” trước khi chúng ta bắt tay vào viết 1 ứng dụng Redis. Chúng ta sẽ cùng nhau phân tích 1 case study cho việc ứng dụng Redis vào web application. Ví dụ được lấy ra từ section 1.3 của cuốn Redis in action, nhưng tách biệt với ngôn ngữ lập trình (Redis in action đưa ra thao tác cụ thể với python), và có 1 vài sửa đổi cho dễ tiếp cận hơn trong phạm vi bài viết.

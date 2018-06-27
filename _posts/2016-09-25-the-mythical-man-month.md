@@ -3,6 +3,7 @@ title: "The Mythical Man-Month"
 type: "book"
 book: "the_mythical_man_month"
 book_title: "The Mythical Man-Month"
+cat: "it"
 ---
 
 Bài viết sau dịch từ chương hai cuốn [The mythical Man-Month](https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959) của tác giả [Frederick P. Brooks, JR.](https://www.cs.unc.edu/~brooks/) Tên chương hai cũng chính là tên sách, phân tích khái niệm man-month và khẳng định vai trò vô cùng quan trọng của giai đoạn lên kế hoạch đến toàn dự án. Mời bạn đọc cùng tìm hiểu.

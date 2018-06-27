@@ -1,5 +1,6 @@
 ---
 title:  "Tổng Quan Về Redis"
+cat: "it"
 ---
 
 ## Redis là gì?

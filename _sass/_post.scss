@@ -4,6 +4,7 @@ ul {
     padding: 0px;
 
     li {
+      margin-bottom: 30px;
 
       a {
         color: $gray-darker;
@@ -14,7 +15,7 @@ ul {
         }
 
         .book-title {
-          font-size: 30px;
+          font-size: 24px;
         }
 
         .book-info {
@@ -30,19 +31,28 @@ ul {
     padding: 0px;
 
     li {
+      margin-bottom: 30px;
 
       h3 {
         margin: 0px;
       }
 
+      img.content-type-slide {
+        height: 22px;
+        padding-bottom: 4px;
+        display: inline-block;
+      }
+
       a {
 
         &.post-link {
+          display: inline-block;
           color: $gray-darker;
           &:hover {
             text-decoration: underline;
           }
         }
+
       }
 
       .post-excerpt {

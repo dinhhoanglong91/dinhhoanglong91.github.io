@@ -4,6 +4,7 @@ type: "book"
 book: "agile_software_development"
 book_title: "Agile Software Development"
 show_top: 0
+cat: "it"
 ---
 
 ## Phần 2 - Thiết kế linh hoạt (Agile Design)
