@@ -16,9 +16,14 @@ defaults:
       layout: post
       category: post
 
+plugins:
+  - jekyll-paginate
+paginate: 10
+
 # Build settings
 markdown: kramdown
 sass:
     style: compressed
 gems:
   - jekyll-coffeescript
+  - jekyll-paginate

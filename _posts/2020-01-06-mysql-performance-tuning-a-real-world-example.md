@@ -1,12 +1,11 @@
 ---
 title: "MySQL Performance Tuning: A Real World Example"
 cat: "it"
-content_type: "slide"
 ---
 
 2 tuần trước mình có được liên hệ hỗ trợ 1 dự án cải thiện performance của 1 câu query MySQL khá là nặng, phía dự án chia sẻ cho mình thông tin sau.
 
-```php:mysql
+{% highlight php %}
 Explain SELECT `students`.`id`,
        `students`.`name`,
        `students`.`user_id`,
@@ -32,11 +31,11 @@ WHERE `students`.`user_id` IN (1, 2, 3)
 GROUP by `students`.`id`
 ORDER by FIELD(students.mark_id, 1), `lastMessageCreatedAt` DESC
 limit 1000 offset 1
-```
+{% endhighlight %}
 
 Và đây là kết quả của câu `EXPLAIN`.
 
-```php:mysql
+{% highlight php %}
 *************************** 1. row ***************************
            id: 1
   select_type: PRIMARY
@@ -76,11 +75,11 @@ possible_keys: messages_student_id_foreign,idx__messages__count,idx__messages__1
          rows: 3
      filtered: 100.00
         Extra: Using index
-```
+{% endhighlight %}
 
 Sau khi nhận các thông tin trên, mình có hỏi phía dự án thêm 1 câu query nữa và nhận được kết quả như sau.
 
-```php:mysql
+{% highlight php %}
 mysql> select mark_id from students order by mark_id desc limit 10;
 1137
 1134
@@ -92,7 +91,7 @@ mysql> select mark_id from students order by mark_id desc limit 10;
 1121
 1116
 1115
-```
+{% endhighlight %}
 
 Hết rồi !!!
 
@@ -108,29 +107,29 @@ Trước khi phân tích xem câu truy vấn nhanh hay chậm, chúng ta cần b
 
 Khá may là câu query trên chỉ làm việc với 2 bảng, là bảng students với messages. Đoạn đầu của `SELECT` chỉ tập trung vào bảng students nên có thể hiểu sơ sơ được, tiếp theo là đến 1 subquery
 
-```php:mysql
+{% highlight php %}
   (select count(id)
         FROM messages
         WHERE messages.student_id = students.id
           AND messages.status = 1
           AND messages.is_from_me = 1) AS unread
-```
+{% endhighlight %}
 
 Nhìn đoạn `AS unread` là có thể đoán được 1 students có nhiều messages, và mục tiêu ở đây là tìm kiếm số lượng messages mà students này chưa đọc.
 
 Tiếp đến câu subquery thứ 2.
 
-```php:mysql
+{% highlight php %}
 (select created_at FROM messages WHERE messages.student_id = students.id ORDER by created_at DESC limit 1000) AS lastMessageCreatedAt
-```
+{% endhighlight %}
 
 Lại nhìn đoạn `AS lastMessageCreatedAt` thì có thể thấy là trong các messages gửi đến students thì tìm ra message được tạo cuối cùng.
 
 Vậy là xong đoạn `SELECT`. Tiếp đến đoạn `WHERE` thì trông cũng không có gì phức tạp, có thể bỏ qua. Đoạn `GROUP BY` càng cho thấy rõ là đang muốn GROUP lại theo đơn vị `students.id` . Đến đoạn ORDER BY thì khá `kinh dị`.
 
-```php:mysql
+{% highlight php %}
 ORDER by FIELD(students.mark_id, 1), `lastMessageCreatedAt` DESC
-```
+{% endhighlight %}
 
 Danh sách students được sắp xếp theo 2 tham số, 1 tham số là kết quả của hàm FIELD với đầu vào là `students.mark_id` và `1`, tham số còn lại là `lastMessageCreatedAt` là kết quả của subquery ở trên.
 
@@ -163,15 +162,15 @@ Cụ thể trong bài toán này. Nhìn vào kết quả của lệnh EXPLAIN, c
 
 1 là query chính base theo bảng students.
 
-```php:mysql
+{% highlight php %}
 SELECT ... FROM students WHERE ... ORDER BY FIELD(students.mark_id, 1), `lastMessageCreatedAt` DESC;
-```
+{% endhighlight %}
 
 2 là subquery ở bảng messages lấy ra lastMessageCreatedAt
 
-```php:mysql
+{% highlight php %}
 (select created_at FROM messages WHERE messages.student_id = students.id ORDER by created_at DESC limit 1000) AS lastMessageCreatedAt
-```
+{% endhighlight %}
 
 Chúng ta cùng phân tích từng field trong lệnh ORDER BY
 
@@ -180,27 +179,27 @@ Chúng ta cùng phân tích từng field trong lệnh ORDER BY
 Mình khá bất ngờ khi đọc câu này vì thấy nó quá ảo. `FIELD` là hàm của MySQL trả về số thứ tự của  tham số đầu tiên (kể từ vị trí thứ 2) match với tham số đầu tiên của hàm.
 Ví dụ
 
-```php:mysql
+{% highlight php %}
 mysql> SELECT FIELD(1, 2, 1, 3);
 +-------------------+
 | FIELD(1, 2, 1, 3) |
 +-------------------+
 |                 2 |
 +-------------------+
-```
+{% endhighlight %}
 
 Hàm FIELD trả về 2 vì từ tham số thứ 2 thì phải đến vị trí số 2 (tức là tham số thứ 3) mới match với tham số đầu tiên của hàm (là `1`).
 
 Do nghi vấn đó, mình đã hỏi team phát triển xem thực sự `students.mark_id` lưu gì, và giống như mình đã chia sẻ ở đầu bài, kết quả trả về là 1 loạt các số kiểu: 1137, 1134, 1116,... Các số này khi cho vào hàm `FIELD(mark_id, 1)` đều trả về 0. Tất cả đều giống nhau thì việc ORDER không có ý nghĩa gì. Hàm sẽ chỉ trả về giá trị khác 0 nếu mark_id bằng 1.
 
-```php:mysql
+{% highlight php %}
 mysql> SELECT FIELD(1137, 1), FIELD(1134, 1), FIELD(1116, 1), FIELD(1, 1);
 +----------------+----------------+----------------+-------------+
 | FIELD(1137, 1) | FIELD(1134, 1) | FIELD(1116, 1) | FIELD(1, 1) |
 +----------------+----------------+----------------+-------------+
 |              0 |              0 |              0 |           1 |
 +----------------+----------------+----------------+-------------+
-```
+{% endhighlight %}
 
 Vậy nếu chỉ muốn tìm xem những ai có mark_id bằng 1 cho xuống dưới cùng thì hoàn toàn có thể `ORDER BY mark_id DESC` là đủ (với điều kiện là đã tối ưu cách lưu trữ để đảm bảo không còn giá trị nào nhỏ hơn 1 được lưu).
 
@@ -216,9 +215,9 @@ Mỗi khi có message mới thì update trường này cho bảng students, như
 
 Cả câu truy vấn
 
-```php:mysql
+{% highlight php %}
 (select created_at FROM messages WHERE messages.student_id = students.id ORDER by created_at DESC limit 1000) AS lastMessageCreatedAt
-```
+{% endhighlight %}
 
 Câu query này mục tiêu tìm kiếm message cuối cùng được tạo cho student này. Nhưng không hiểu vì sao lại SELECT hết ra rồi ORDER BY rồi mới gán vào `AS lastMessageCreatedAt`.
 Trong hầu hết các trường hợp, câu query này sai. Không chạy được và gặp lỗi này
@@ -230,9 +229,9 @@ ERROR 1242 (21000): Subquery returns more than 1 row
 Bởi 1 student có nhiều message, câu lệnh trả về nhiều hơn 1 giá trị nên không thể gán vào 1 giá trị được. Chỉ may mắn chạy được nếu students đó có duy nhất 1 messages.
 Câu query đúng phải viết như sau.
 
-```php:mysql
+{% highlight php %}
 (select MAX(created_at) FROM messages WHERE messages.student_id = students.id) AS lastMessageCreatedAt
-```
+{% endhighlight %}
 
 Nếu may mắn performance vẫn ổn, thì chúng ta có thể tạm chạy theo cách này, không cần lưu  trường last_message_created_at vào bảng students.
 
@@ -240,16 +239,16 @@ Nếu may mắn performance vẫn ổn, thì chúng ta có thể tạm chạy th
 
 Có 2 loại subquery, 1 là dependent subquery và 2 independent subquery. Dependent subquery phụ thuộc vào câu query bên ngoài (outer query) trong khi independent subquery không phụ thuộc vào query bên ngoài (outer query) và có thể chạy độc lập. 1 ví dụ về independent subquery với bảng students và messages.
 
-```php:mysql
+{% highlight php %}
 SELECT * FROM students WHERE id IN (SELECT DISTINCT(student_id) FROM messages WHERE created_at >= "2020-01-01");
-```
+{% endhighlight %}
 
 Tìm tất cả các students được gửi messages từ đầu năm mới (2020) đến giờ.
 Rõ ràng câu subquery
 
-```php:mysql
+{% highlight php %}
 SELECT DISTINCT(student_id) FROM messages WHERE created_at >= "2020-01-01"
-```
+{% endhighlight %}
 
 Có thể chạy độc lập mà không cần biết `students` ở bên ngoài là gì.
 
@@ -257,10 +256,10 @@ Tuy nhiên trong bài toán của chúng ta, thì có đến 2 subquery và đ�
 
 Cần biết rằng khi có depedent subquery, mỗi khi MySQL duyệt đến 1 dòng của bảng chính (qua outer query), nó sẽ phải tiếp tục chạy 1 câu query subquery nữa và cảm giác chúng ta đang chạy N+1 query chứ không phải 1 query. Vì vậy, cần hạn chế tối đa dependent subquery.
 
-```php:mysql
+{% highlight php %}
 (select count(id) FROM messages WHERE messages.student_id = students.id AND messages.status = 1 AND messages.is_from_me = 1) AS unread
 (select created_at FROM messages WHERE messages.student_id = students.id ORDER by created_at DESC limit 1000) AS lastMessageCreatedAt
-```
+{% endhighlight %}
 
 Cùng nhìn lại 2 subquery ở trên và nghĩ xem chúng ta có thể cải thiện được gì.
 
@@ -268,9 +267,9 @@ Cùng nhìn lại 2 subquery ở trên và nghĩ xem chúng ta có thể cải t
 
 * Còn với trường hợp `unread`, giải pháp có vẻ đơn giản hơn. Trường này không dùng ở đâu trong câu query hết, không dùng để sắp xếp gì hết, nên chúng ta hoàn toàn có thể tách nó ra và chạy 1 câu query riêng. Câu query này chỉ cần chạy với bảng messages và group by student_id để count xem 1 student có bao nhiêu message. Đối tượng student_id để WHERE là list `students.id` kết quả của câu query trước đó.
 
-```php:mysql
+{% highlight php %}
 SELECT student_id, count(id) FROM messages WHERE messages.student_id IN (LIST STUDENT ID) AND messages.status = 1 and messages.is_from_me = 1 GROUP BY messages.student_id;
-```
+{% endhighlight %}
 
 Vậy là không cần depedent subquery, và hiệu năng câu query thứ 2 cũng hơn hẳn.
 
